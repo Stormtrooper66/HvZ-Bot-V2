@@ -14,6 +14,7 @@ module.exports = {
                         senderData = player;
                     }
                 });
+                if(senderData == undefined){message.reply("Error 404: Player not found. Make sure you have run !joingame, then post your picture again."); return;}
                 //if(senderData == undefined ){console.log(senderData); return;}
                 if(senderData.Status != "Human"){return;}
 
@@ -26,15 +27,26 @@ module.exports = {
                 const fs = require('fs');
                 fs.writeFileSync('./Saved_Data.json', JSON.stringify(savedData));
 
-            }else{return;}
+            }else{
+                message.reply("File type not recognised. Contact our Staff if this is an error."); 
+                message.react('❌');
+                return;
+            }
+        }else if(message.attachments.size > 1){
+            message.reply("Multiple Attachments detected. Please submit one picture at a time."); 
+            message.react('❌');
+            return;
         }
     },
     attachIsImage(msgAttach) {
         var url = msgAttach.url;
+        //console.log(msgAttach.url);
         //True if this url is a png image.
-        var jpglcheck = url.indexOf("jpg", url.length - "jpg".length /*or 3*/) !== -1;
-        var pngcheck = url.indexOf("png", url.length - "png".length /*or 3*/) !== -1;
-        var jpegcheck = url.indexOf("jpeg", url.length - "jpeg".length /*or 4*/) !== -1;
-        return (jpglcheck || pngcheck || jpegcheck);
+        var jpgcheck = (url.indexOf("jpg") !== -1) || (url.indexOf("JPG") !== -1);
+        var pngcheck = url.indexOf("png") !== -1;
+        var PNGcheck = url.indexOf("PNG") !== -1;
+        var jpegcheck = url.indexOf("jpeg") !== -1;
+        var heiccheck = url.indexOf("HEIC") !== -1;
+        return (jpgcheck || pngcheck || PNGcheck || jpegcheck || heiccheck);
     }
 }

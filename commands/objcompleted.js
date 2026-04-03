@@ -20,7 +20,8 @@ module.exports = {
             target = message.guild.members.cache.find(mem => mem.id === parsedId);
             targetData = savedData.Player_Tracking.find(player => player.ID === target.user.id);
         }catch{message.reply("Incorrect usage\nCommand Format: !objComplete @playername"); return;}
-
+        if(targetData == undefined){message.reply("Error 404: Player not found"); return;}
+        
         message.channel.send(`${target.user} objective complete?: ${targetData.ObjCleared}`);
     }
 }

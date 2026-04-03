@@ -18,6 +18,15 @@ module.exports = {
             if(player.ID == playerID){
                 console.log("Player "+ message.author.username +" is already signed up.");
                 alreadyIn = true;
+                
+                message.reply(
+                    {embeds: [{
+                      description: `You're already signed up, check your DMs for your playercode.`,
+                      color: 	16776960 //yellow
+                      }], 
+                      ephemeral:true  
+                    }
+                );
             }
         });
 
@@ -32,6 +41,8 @@ module.exports = {
 
         if(message.member.roles.cache.find(r => r.name === "HvZ Head")){
             status = "Admin";
+        }else{
+            savedData.PlayerCounts.Humans = savedData.PlayerCounts.Humans + 1;
         }
 
         var thisPlayer = {};
@@ -42,8 +53,6 @@ module.exports = {
         thisPlayer.KillCount = killCount;
         thisPlayer.hasBounty = false;
         thisPlayer.ObjCleared = false;
-
-        savedData.PlayerCounts.Humans = savedData.PlayerCounts.Humans + 1;
 
         savedData.Player_Tracking.push(thisPlayer);
 

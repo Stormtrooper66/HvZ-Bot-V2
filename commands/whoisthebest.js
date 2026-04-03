@@ -8,8 +8,8 @@ module.exports = {
         var num = randomInt(5);
 
         if(num == 0){
-            message.guild.members.fetch("217814652778708993").then(tar => {
-                message.channel.send(`${tar.user}`);
+            message.guild.members.fetch("343840753811980296").then(tar => {
+                message.channel.send(`${tar.user} lol get pinged`);
             }) //straight up just pings Zach lol
         }
         else if(num == 1){message.channel.send("Well obviously it must be you")}
@@ -17,8 +17,10 @@ module.exports = {
 
             var highestkills = 0;
             var highestkilluser;
+
             savedData.Player_Tracking.forEach(player => {
                 if(player.KillCount > highestkills){
+                    highestkills = player.KillCount;
                     highestkilluser = player;
                 }
             });

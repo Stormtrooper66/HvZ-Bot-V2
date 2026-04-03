@@ -23,6 +23,7 @@ module.exports = {
         target = message.guild.members.cache.find(mem => mem.id === parsedId);
         targetData = savedData.Player_Tracking.find(player => player.ID === target.user.id);
         }catch{message.reply("Incorrect usage\nCommand Format: !Revive @playername (noCode)"); return;}
+        if(targetData == undefined){message.reply("Error 404: Player not found"); return;}
 
         //admins can't be revived
         if(targetData.Status === "Admin") {message.reply(`${target.user} is a game Admin, they cannot be revived.`); return;}

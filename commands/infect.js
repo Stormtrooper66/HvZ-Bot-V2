@@ -22,6 +22,7 @@ module.exports = {
             targetData = savedData.Player_Tracking.find(player => player.ID === target.user.id);
         }catch{message.reply("Incorrect usage\nCommand Format: !infect @playername"); return;}
 
+        if(targetData == undefined){message.reply("Error 404: Player not found"); return;}
         //admins can't be infect's
         if(targetData.Status === "Admin") {message.reply(`${target.user} is a game Admin, they cannot be infected.`); return;}
 

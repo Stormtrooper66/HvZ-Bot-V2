@@ -33,7 +33,8 @@ module.exports = {
 !objcompleted - says whether or not a player has completed the objective yet
 !forceobjcomplete - changes the status of a players objective completion: mostly for fixing bot mistakes
 !midnightObj - checks if players have completed the objective and automatically infects
-!noCount  - removes a player from the list of people who have cleared the objective and DM’s the player that their picture did not meet the requirements`
+!noCount  - removes a player from the list of people who have cleared the objective and DM’s the player that their picture did not meet the requirements
+!yesCount  - adds a player to the list of people who have cleared the objective`
         )}
         else
         {

@@ -1,5 +1,5 @@
 module.exports = {
-    name:'whatdowewant',
+    name:'whendowewantit',
     description:'bit of an easter egg',
     execute(message, args, savedData){
         if(!savedData.gameRunning) return;

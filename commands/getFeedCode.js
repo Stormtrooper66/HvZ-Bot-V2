@@ -20,6 +20,8 @@ module.exports = {
             targetData = savedData.Player_Tracking.find(player => player.ID === target.user.id);
         }catch{message.reply("Incorrect usage\nCommand Format: !getFeedCode @playername"); return;}
 
+        if(targetData == undefined){message.reply("Error 404: Player not found"); return;}
+
         message.author.createDM().then(user => (user.send("Feed Code for Player: "+`${target.user}: **${targetData.FeedCode}**`)));
     }
 }

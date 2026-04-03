@@ -3,7 +3,7 @@ module.exports = {
     description:'checks if players have completed the objective and automatically infects',
     execute(message, args, savedData){
         if(!savedData.gameRunning) return;
-        if(!message.member.roles.cache.find(r => (r.name === "HvZ Head" || r.name === "Staff"))) return; //admin/staff only command
+        if(!message.member.roles.cache.find(r => (r.name === "HvZ Head" || r.name === "Discord Administrator"))) return; //admin/staff only command
 
         const fs = require('fs');
         

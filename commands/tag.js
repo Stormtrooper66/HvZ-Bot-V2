@@ -28,6 +28,7 @@ module.exports = {
         targetData = savedData.Player_Tracking.find(player => player.ID === target.user.id);
         }
         catch(err){this.errorMessage(message); return;}
+        if(targetData == undefined){message.reply("Error 404: Player not found"); return;}
 
         //You can't tag yourself
         if(targetData.ID == message.author.id){message.reply("You can't tag yourself..."); return;};
@@ -39,7 +40,13 @@ module.exports = {
         if(targetData.Status === "Admin") {message.reply(`${target.user} is a game Admin, they cannot be tagged`); return;}
 
         //Humans can't tag people
-        if(taggerData.Status === "Human") {message.reply(`You're a human...\nYou can't tag other humans`); return;}
+        if(taggerData.Status === "Human") {
+            if(targetData.Status === "Zombie") {
+                message.reply(`You're a human...\nYou can't tag a zombie`);
+            }else{
+                message.reply(`You're a human...\nYou can't tag other humans`);
+            }
+            return;}
 
         //Zombies can't be tagged
         if(targetData.Status === "Zombie") {message.reply(`${target.user} is already a Zombie... \nYou can't tag a zombie twice`); return;}
